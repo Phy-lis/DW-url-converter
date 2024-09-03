@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW短網址轉換</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #b3cde0; /* Light blue background */
+        }
+        .container {
+            background-color: #f5f8fa; /* Light grey background for container */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px; /* Adjust width as needed */
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            background-color: #33475b; /* Darker blue button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2b3d4c; /* Slightly darker blue on hover */
+        }
+        h2 {
+            font-weight: bold;
+            color: #333;
+        }
+        .description {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>DW短網址轉換</h2>
+        <p class="description">請務必把文章轉成繁體後再複製網址<br>不然會出現錯誤哦</p>
+        <div class="image-container">
+            <img src="data:image/png;base64,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" alt="Instruction Image" style="width: 100%; height: auto;">
+        </div>
+        <input type="text" id="inputUrl" placeholder="請貼繁體長網址">
+        <button onclick="convertUrl()">轉換成短網址</button>
+        <input type="text" id="outputUrl" readonly>
+        <!-- 新增“複製”按鈕 -->
+        <button onclick="copyToClipboard()">複製</button>
+    </div>
+
+    <script>
+        function convertUrl() {
+            const input = document.getElementById('inputUrl').value;
+            const output = document.getElementById('outputUrl');
+            
+            try {
+                const url = new URL(input);
+                if (url.hostname === 'www.dw.com' && url.pathname.startsWith('/zh-hant/')) {
+                    const parts = url.pathname.split('/');
+                    const lastPart = parts[parts.length - 1];
+                    const convertedUrl = `https://www.dw.com/zh-hant/${lastPart}`;
+                    output.value = convertedUrl;
+                } else {
+                    output.value = '無效的網址。請確保網址是以 "https://www.dw.com/zh-hant/" 開頭。';
+                }
+            } catch (e) {
+                output.value = '請輸入有效的網址';
+            }
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('outputUrl');
+            output.select();
+            output.setSelectionRange(0, 99999); // 選擇文字
+            document.execCommand('copy');
+            alert('已複製網址：' + output.value);
+        }
+    </script>
+</body>
+</html>
