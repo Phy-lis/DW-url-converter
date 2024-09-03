@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW短網址轉換</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>DW短網址轉換</h2>
+        <input type="text" id="inputUrl" placeholder="請在DW中文網的文章按下轉成繁體後，把網址貼過來">
+        <button onclick="convertUrl()">轉換成短網址</button>
+        <input type="text" id="outputUrl" readonly>
+        <!-- 新增“複製”按鈕 -->
+        <button onclick="copyToClipboard()">複製</button>
+    </div>
+
+    <script>
+        function convertUrl() {
+            const input = document.getElementById('inputUrl').value;
+            const output = document.getElementById('outputUrl');
+            
+            try {
+                const url = new URL(input);
+                if (url.hostname === 'www.dw.com' && url.pathname.startsWith('/zh-hant/')) {
+                    const parts = url.pathname.split('/');
+                    const lastPart = parts[parts.length - 1];
+                    const convertedUrl = `https://www.dw.com/zh-hant/${lastPart}`;
+                    output.value = convertedUrl;
+                } else {
+                    output.value = '無效的網址。請確保網址是以 "https://www.dw.com/zh-hant/" 開頭。';
+                }
+            } catch (e) {
+                output.value = '請輸入有效的網址';
+            }
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('outputUrl');
+            output.select();
+            output.setSelectionRange(0, 99999); // 選擇文字
+            document.execCommand('copy');
+            alert('已複製網址：' + output.value);
+        }
+    </script>
+</body>
+</html>
